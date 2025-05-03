@@ -16,9 +16,9 @@ public class Book {
     private String name;
     private String author;
 
-    private Publisher publisher;
-
-    @DBRef
-    private Writing writing;
+//    private Publisher publisher;
+//
+//    @DBRef
+//    private Writing writing;
 
 }

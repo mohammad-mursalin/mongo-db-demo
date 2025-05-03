@@ -3,6 +3,7 @@ package com.example.mongo_demo.controller;
 import com.example.mongo_demo.model.Book;
 import com.example.mongo_demo.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,5 +25,10 @@ public class BookController {
     @GetMapping("/get-books")
     public List<Book> getBooks() {
         return bookService.getBooks();
+    }
+
+    @GetMapping("/get-books-page")
+    public Page<Book> getBooksInPage() {
+        return bookService.getBooksInPage();
     }
 }

@@ -7,6 +7,9 @@ import com.example.mongo_demo.repository.BookRepository;
 import com.example.mongo_demo.repository.PublisherRepo;
 import com.example.mongo_demo.repository.WritingRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,28 +20,36 @@ public class BookService {
     @Autowired
     private BookRepository bookRepository;
 
-    @Autowired
-    WritingRepo writingRepo;
-
-    @Autowired
-    PublisherRepo publisherRepo;
+//    @Autowired
+//    WritingRepo writingRepo;
+//
+//    @Autowired
+//    PublisherRepo publisherRepo;
 
     public void addBook(Book book) {
 
-        Writing writing = new Writing("12", 10);
-        Publisher publisher = new Publisher("21", "laon", "xyz");
-        book.setPublisher(publisher);
-        book.setWriting(writing);
-
-        writingRepo.save(writing);
-        publisherRepo.save(publisher);
+//        Writing writing = new Writing("12", 10);
+//        Publisher publisher = new Publisher("21", "laon", "xyz");
+//        book.setPublisher(publisher);
+//        book.setWriting(writing);
+//
+//        writingRepo.save(writing);
+//        publisherRepo.save(publisher);
 
         bookRepository.save(book);
 
-        getBooks().forEach(System.out::println);
+//        getBooks().forEach(System.out::println);
     }
 
     public List<Book> getBooks() {
         return bookRepository.findAll();
+    }
+
+    public Page<Book> getBooksInPage() {
+
+        Pageable page = PageRequest.of(0,2);
+
+        Page<Book> bookPage = bookRepository.findAll(page);
+        return bookPage;
     }
 }
